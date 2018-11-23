@@ -123,7 +123,7 @@ Who is implementing this feature? In case of multiple authors, designate a
 primary assignee and other contributors.
 
 Primary assignee:
-  <developer-a>, <irc nick>, <email>
+  jaewook Lee, <irc nick>, iioiioiio123@korea.ac.kr
 
 Other contributors:
   <developer-b>, <irc nick>, <email>
