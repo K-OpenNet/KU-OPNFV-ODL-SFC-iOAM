@@ -32,6 +32,9 @@ Proposed change
 ===============
 Details of the proposed change.
 
+We change
+
+
 Pipeline changes
 ----------------
 Any changes to pipeline must be captured explicitly in this section.
