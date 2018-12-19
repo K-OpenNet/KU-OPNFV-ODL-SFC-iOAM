@@ -1,0 +1,97 @@
+module sfc-ioam-nb-trace {
+
+  yang-version 1;
+
+  namespace "urn:cisco:params:xml:ns:yang:sfc-ioam-nb-trace";
+
+  prefix sfc-ioam-nb-trace;
+
+  import yang-ext { prefix ext; }
+
+  import rendered-service-path { prefix sfc-rsp; }
+  import sfc-common { prefix sfc-co; }
+
+  organization "Korea University.";
+  contact
+     "Jaewook Lee <iioiioiio123@korea.ac.kr>";
+     "Haneul Ko <st_basket@korea.ac.kr>";
+
+  description
+    "This module contains a collection of YANG definitions for
+     managing service function chain iOAM trace related
+     configuration parameters (RPC) at the north-bound side towards
+     the controller and some internal configuration parameters.";
+
+  revision 2018-12-19 {
+    description
+      "Initial revision.";
+    reference
+      "";
+  }
+
+
+
+  augment "/sfc-rsp:rendered-service-paths"
+        + "/sfc-rsp:rendered-service-path" {
+    description "Rendered service path's proof of transit
+                 related augmentation.";
+    ext:augment-identifier "rsp-ioam-trace-augmentation";
+    uses ioam-trace-params;
+  }
+
+
+  /*** RPCs ***/
+  rpc enable-sfc-ioam-trace-rendered-path {
+    description
+      "Enable and Configure service function chain proof
+       of transit for a rendered service path.";
+    input {
+      leaf sfc-ioam-trace-rsp-name {
+        type sfc-co:rsp-name;
+        description
+          "Name of the Rendered Service Path to enable
+           iOAM tracing on. This should be an existing
+           rendered service path such as one created from
+           rendered-service-path:create-rendered-path RPC.
+           NOTE: by default, the first node and last node of the SFC are
+           taken as the encap and decap node for iOAM trace, respectively.";
+      }
+
+      uses ioam-trace-params;
+    }
+
+    output {
+      leaf result {
+        type boolean;
+        description
+          "True if SFC proof of transit of the chosen
+           Rendered Service Path is enabled, otherwise false";
+      }
+    }
+  }
+
+  rpc disable-sfc-ioam-trace-rendered-path {
+    description
+      "Disable service function chain proof of transit
+       for a rendered service path.";
+    input {
+      leaf sfc-ioam-trace-rsp-name {
+        type sfc-co:rsp-name;
+        description
+          "Name of the Rendered Service Path to disable
+           iOAM tracing on. This should be an existing
+           rendered service path such as one created from
+           rendered-service-path:create-rendered-path RPC.";
+      }
+    }
+
+    output {
+      leaf result {
+        type boolean;
+        description
+          "True if SFC proof of transit of the chosen
+           Rendered Service Path is disabled, otherwise false.";
+      }
+    }
+  }
+}
