@@ -29,11 +29,15 @@ module sfc-ioam-nb-trace {
       "";
   }
 
+  list trace-profile {
+
+  }
+
 
 
   augment "/sfc-rsp:rendered-service-paths"
         + "/sfc-rsp:rendered-service-path" {
-    description "Rendered service path's proof of transit
+    description "Rendered service path's trace
                  related augmentation.";
     ext:augment-identifier "rsp-ioam-trace-augmentation";
     uses ioam-trace-params;
